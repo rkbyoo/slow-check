@@ -1,24 +1,28 @@
+#!/usr/bin/env node
 
-//here process.argvs parse the commands in 3 parts , node executable path, path of js file which runs and then at last it prints the 
-console.log(process.argv);
+const { spawn } = require('child_process');
 
-//lets understand what is spawn and how it works
-
-const {spawn}=require('child_process');
-
+const args = process.argv.slice(2);
+const command = args[0];
+const commandArgs = args.slice(1);
 
 const start=Date.now();
 
-const child=spawn('node',['-v'],{shell:true}); 
-
-child.stdout.on('data',d=>process.stdout.write(d));
-child.stderr.on('data',d=>process.stderr.write(d));
-
-child.on('close',(code)=>{
-    const end=Date.now();
-    console.log('---');
-    console.log('Exit code:',code);
-    console.log('Time:',start-end,'ms')
+const child = spawn(command, commandArgs, {
+  shell: true,
+  stdio: ['inherit', 'pipe', 'pipe']
 });
 
+child.stdout.on('data', (data) => {
+  process.stdout.write(data);
+});
 
+child.stderr.on('data', (data) => {
+  process.stderr.write(data);
+});
+
+child.on('close', (code) => {
+    const end=Date.now();
+    console.log("Time:",end-start,"ms");
+  console.log('Exit code:', code);
+});
