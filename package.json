@@ -1,16 +1,45 @@
 {
   "name": "slow-check",
   "version": "1.0.0",
-  "description": "",
+  "description": "A command-line utility that provides visual feedback and timing information for long-running commands",
   "main": "index.js",
   "bin": {
     "slow-check": "./index.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "demo": "chmod +x demo/demo-commands.sh && ./demo/demo-commands.sh",
+    "demo:build": "node demo/simulate-build.js",
+    "demo:download": "node demo/simulate-download.js",
+    "demo:long-task": "node demo/simulate-long-task.js",
+    "demo:error": "node demo/simulate-error.js",
+    "test": "echo \"Running basic functionality tests...\" && node index.js echo \"Test successful!\"",
+    "install-global": "npm install -g .",
+    "link": "npm link"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "cli",
+    "command-line",
+    "progress",
+    "spinner",
+    "monitoring",
+    "timing",
+    "developer-tools",
+    "build-tools",
+    "terminal",
+    "shell"
+  ],
+  "author": "Developer",
   "license": "ISC",
-  "type": "commonjs"
+  "type": "commonjs",
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/username/slow-check.git"
+  },
+  "bugs": {
+    "url": "https://github.com/username/slow-check/issues"
+  },
+  "homepage": "https://github.com/username/slow-check#readme"
 }
